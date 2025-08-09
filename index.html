@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentesia - Automatización con IA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    body {
+      font-family: 'Orbitron', Arial, sans-serif;
+      margin: 0;
+      background-color: #050505;
+      color: #e0e0e0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fondo animado tipo circuitos */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('img/fondo-circuitos.jpg') repeat;
+      opacity: 0.08;
+      animation: moveBackground 20s linear infinite;
+      z-index: -3;
+    }
+
+    @keyframes moveBackground {
+      from { background-position: 0 0; }
+      to { background-position: 1000px 1000px; }
+    }
+
+    /* Líneas brillantes simulando energía */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: -200%;
+      width: 200%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(0, 255, 255, 0.1) 0px,
+        rgba(0, 255, 255, 0.1) 2px,
+        transparent 2px,
+        transparent 6px
+      );
+      animation: energyFlow 8s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes energyFlow {
+      from { transform: translateX(0); }
+      to { transform: translateX(50%); }
+    }
+
+    /* Canvas de partículas */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    header {
+      background-color: #0a0a0a;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #0ff;
+      box-shadow: 0 0 15px #0ff;
+    }
+
+    /* Efecto holograma */
+    .holograma {
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff, 0 0 15px #0ff, 0 0 25px #0ff;
+      animation: hologramaFlicker 3s infinite;
+    }
+
+    @keyframes hologramaFlicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 5px #0ff, 0 0 15px #0ff, 0 0 25px #0ff, 0 0 35px #0ff;
+      }
+      20%, 24%, 55% {
+        opacity: 0.6;
+        text-shadow: 0 0 3px #0ff, 0 0 8px #0ff, 0 0 15px #0ff;
+      }
+      22% {
+        opacity: 0.3;
+        text-shadow: none;
+      }
+    }
+
+    nav a {
+      color: #0ff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    }
+
+    section {
+      padding: 40px 15px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+
+    .iframe-container {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 15px;
+      border-radius: 8px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 0 15px #0ff;
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+      min-height: 500px;
+    }
+
+    blockquote {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      margin: 15px auto;
+      border-left: 4px solid #0ff;
+      max-width: 600px;
+      font-style: italic;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #0a0a0a;
+      border-top: 2px solid #0ff;
+      box-shadow: 0 0 15px #0ff;
+    }
+
+    @media (max-width: 768px) {
+      nav a { font-size: 14px; margin: 5px; }
+      iframe { min-height: 400px; }
+    }
+
+    @media (max-width: 480px) {
+      nav a { font-size: 12px; margin: 3px; }
+      iframe { min-height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="particles"></canvas>
+
+  <header>
+    <h1 class="holograma">Agentesia</h1>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#suscripciones">Suscripciones</a>
+      <a href="#reservar">Reservar</a>
+      <a href="#comentarios">Comentarios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section id="inicio">
+    <h2 class="holograma">Automatización Inteligente con IA</h2>
+    <p>En Agentesia, impulsamos tu negocio con agentes inteligentes que optimizan y automatizan procesos.</p>
+    <img src="img/robot.png" alt="Robot Futurista" style="max-width:100%; border:2px solid #0ff; box-shadow: 0 0 20px #0ff;">
+  </section>
+
+  <section id="suscripciones">
+    <h2 class="holograma">Suscríbete</h2>
+    <div class="iframe-container">
+      <iframe src="https://api.leadconnectorhq.com/widget/form/sCnZQZijWAXH4gZiHX63" style="border-radius:4px" title="Formulario GoHighLevel"></iframe>
+      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+    </div>
+  </section>
+
+  <section id="reservar">
+    <h2 class="holograma">Reservar Cita</h2>
+    <div class="iframe-container">
+      <iframe src="https://api.leadconnectorhq.com/widget/bookings/calendario-ejemplo-aria-72a23c40-775c-4983-9a5a-93afc7612841" style="border-radius:4px" title="Calendario GoHighLevel"></iframe>
+    </div>
+  </section>
+
+  <section id="comentarios">
+    <h2 class="holograma">Comentarios</h2>
+    <blockquote>“Agentesia revolucionó nuestra productividad” - Cliente 1</blockquote>
+    <blockquote>“La mejor decisión para automatizar procesos” - Cliente 2</blockquote>
+  </section>
+
+  <section id="contacto">
+    <h2 class="holograma">Contacto</h2>
+    <p>Email: contacto@agentesia.com</p>
+    <p>Tel: +34 600 000 000</p>
+    <p>Dirección: Calle Innovación 123, Madrid, España</p>
+  </section>
+
+  <footer>
+    <p>©️ 2025 Agentesia - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    let particlesArray = [];
+    const colors = ["#0ff", "#0cc", "#09f"];
+    let particleCount = window.innerWidth < 768 ? 25 : 50;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 0.6 - 0.3;
+        this.speedY = Math.random() * 0.6 - 0.3;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = this.color;
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < particleCount; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particleCount = window.innerWidth < 768 ? 25 : 50;
+      initParticles();
+    });
+
+    initParticles();
+    animateParticles();
+  </script>
+
+</body>
+</html>
